@@ -1,0 +1,17 @@
+<div *ngIf="apiLoaded | async">
+  <mat-button-toggle-group #toggle="matButtonToggleGroup">
+    <mat-button-toggle value="Heatmap">Тепловая карта</mat-button-toggle>
+    <mat-button-toggle value="Markers">Маркеры</mat-button-toggle>
+  </mat-button-toggle-group>
+  <google-map [center]="moscowCenter" [zoom]="11" [width]="1200" [height]="1200" [ngSwitch]="positions | async">
+    <ng-container [ngSwitch]="toggle.value">
+      <ng-container *ngSwitchCase="'Markers'">
+        <map-marker #marker="mapMarker" *ngFor="let point of points | async" (mapClick)="centerOn($event, marker)" [options]="point.options" [position]="point.position"></map-marker>
+        <map-info-window>{{infoContent}}</map-info-window>
+      </ng-container>
+      <ng-container *ngSwitchCase="'Heatmap'">
+        <map-heatmap-layer *ngIf="(positions | async) as pos" [data]="pos"></map-heatmap-layer>
+      </ng-container>
+    </ng-container>
+  </google-map>
+</div>
