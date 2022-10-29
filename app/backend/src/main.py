@@ -1,5 +1,9 @@
+from collections.abc import Mapping
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from .database.register import init_db
 
 
 app = FastAPI()
@@ -14,7 +18,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.on_event("startup")
+async def on_startup() -> None:
+    await init_db()
+
 
 @app.get("/")
-async def home():
+async def home() -> Mapping[str, str]:
     return {"status": "ok"}
