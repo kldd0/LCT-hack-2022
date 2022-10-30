@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database.register import init_db
+from .database.models import *
 
 
 app = FastAPI()
