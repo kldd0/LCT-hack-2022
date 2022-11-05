@@ -1,5 +1,5 @@
-from typing import Optional, List
-from sqlmodel import SQLModel, Field, Relationship
+from typing import Optional, Mapping, List
+from sqlmodel import SQLModel, Field, Relationship, JSON, Column
 
 
 class Region(SQLModel, table=True):
@@ -22,23 +22,11 @@ class Entity(SQLModel, table=True):
     type_name: str = Field(index=True)
     name: str
     address: str
-    coordinates: List[int]
+    coordinates: Optional[List[float]] = Field(sa_column=Column(JSON))
+    distances: Optional[List[int]] = Field(sa_column=Column(JSON))
 
     district_id: Optional[int] = Field(default=None, foreign_key="district.id")
     district: Optional[District] = Relationship(back_populates="entities")
 
-
-# class TradeEntity(EntityBase, table=True):
-#     pass
-
-
-# class SportEntity(EntityBase, table=True):
-#     pass
-
-
-# class StateEntity(EntityBase, table=True):
-#     pass
-
-
-# class CultureEntity(EntityBase, table=True):
-#     pass
+    class Config:
+        arbitrary_types_allowed = True
