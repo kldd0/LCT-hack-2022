@@ -1,0 +1,17 @@
+.map-component-container {
+  width: 100%;
+}
+.map-container {
+  width: 600px;
+}
+
+.map {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.filter-button {
+  display: block;
+  height: 10%;
+}

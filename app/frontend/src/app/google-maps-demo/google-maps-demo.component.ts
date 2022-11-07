@@ -8,6 +8,7 @@ import {MapInfoWindow, MapMarker} from "@angular/google-maps";
 @Component({
   selector: 'google-maps-demo',
   templateUrl: './google-maps-demo.component.html',
+  styleUrls: ['./google-maps-demo.component.css']
 })
 export class GoogleMapsDemoComponent {
   @ViewChild(MapInfoWindow) infoWindow?: MapInfoWindow;
@@ -29,6 +30,7 @@ export class GoogleMapsDemoComponent {
   }
 
   centerOn(position: google.maps.MapMouseEvent, marker: MapMarker) {
+      this.infoContent += 'y';
       this.infoWindow?.open(marker, true);
     }
 

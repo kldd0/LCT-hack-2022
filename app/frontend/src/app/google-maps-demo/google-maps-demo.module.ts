@@ -6,6 +6,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { GoogleMapsDemoComponent } from './google-maps-demo.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     HttpClientJsonpModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
+    MatButtonModule,
   ],
   exports: [
     GoogleMapsDemoComponent,
